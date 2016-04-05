@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :projects
   devise_for :users
-  root 'projects#index'
+  authenticated :user do
+    root 'projects#index', as: :authenticated_root
+  end
+
+  root 'pages#index'
   resources :project_users
 
   # The priority is based upon order of creation: first created -> highest priority.
