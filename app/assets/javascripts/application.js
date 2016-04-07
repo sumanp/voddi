@@ -13,7 +13,9 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
 //= require materialize-sprockets
+//= require tinymce-jquery
 //= require_tree .
 //= require turbolinks
 
