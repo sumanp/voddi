@@ -1,24 +1,62 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p class="right-align"> <a class=" modal-trigger waves-effect waves-teal btn" href="#newmessage">New Message</a></p>
+  <div class="col s12 z-depth-1 card-panel">
+    <div class="row blue-grey darken-1">
+      <br>
+      <h5 class="center-align card-content white-text">
+          V<%= @project.id %> : <%= @project.title %>
+      </h5>
+      <div class="col s12 ">
+        <ul class="tabs blue-grey darken-1 white-text">
+          <li class="tab col s4"><a href="#info">Project</a></li>
+          <li class="tab col s4"><a href="#attachments">Communication</a></li>
+          <li class="tab col s5"><a href="#tasks">Activities</a></li>
+        </ul>
+      </div>
+    </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+    <div id="info" class="col s12">
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+        <p>
+         <b> Description:</b>
+          <%= @project.description.html_safe %>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @project.start_date %>
-</p>
+        </p>
+        <p>
+          <i class="material-icons tiny">date_range</i>
+         <b> Start Date:</b>
+          <%= @project.start_date.to_date.strftime("%d %b, %y") %>
+          <i class="material-icons tiny">date_range</i>
+          <b>End Date:</b>
 
-<p>
-  <strong>End date:</strong>
-  <%= @project.end_date %>
-</p>
+          <%= @project.end_date.to_date.strftime("%d %b, %y") %>
+        </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+
+
+
+      <p class= "col s6">
+        Created by: <%= @project.users.name %>
+      </p>
+
+      <p class= "col s6 right-align">
+
+          <%= link_to 'Edit Project', edit_project_path(@project) %>
+
+      </p>
+
+    </div>
+
+
+
+
+</div>
+
+<div class=" row project-meta">
+  <p class="col s6">Project Created: <%= time_ago_in_words(@project.created_at) %> ago </p>
+
+  <p class=" col s6 right-align">
+
+    <%= link_to 'Back to Project list', projects_path %>
+   </p>
+</div>
