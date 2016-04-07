@@ -9,8 +9,8 @@
       <div class="col s12 ">
         <ul class="tabs blue-grey darken-1 white-text">
           <li class="tab col s4"><a href="#info">Project</a></li>
-          <li class="tab col s4"><a href="#attachments">Communication</a></li>
-          <li class="tab col s5"><a href="#tasks">Activities</a></li>
+          <li class="tab col s4"><a href="#message">Communication</a></li>
+          <li class="tab col s5"><a href="#activity">Activities</a></li>
         </ul>
       </div>
     </div>
@@ -20,7 +20,6 @@
         <p>
          <b> Description:</b>
           <%= @project.description.html_safe %>
-
         </p>
         <p>
           <i class="material-icons tiny">date_range</i>
@@ -28,26 +27,32 @@
           <%= @project.start_date.to_date.strftime("%d %b, %y") %>
           <i class="material-icons tiny">date_range</i>
           <b>End Date:</b>
-
           <%= @project.end_date.to_date.strftime("%d %b, %y") %>
         </p>
 
+        <p class= "col s6">
+          Created by: <%= @project.users.name %>
+        </p>
+        <p class= "col s6 right-align">
 
+            <%= link_to 'Edit Project', edit_project_path(@project) %>
 
-
-      <p class= "col s6">
-        Created by: <%= @project.users.name %>
-      </p>
-
-      <p class= "col s6 right-align">
-
-          <%= link_to 'Edit Project', edit_project_path(@project) %>
-
-      </p>
-
+        </p>
     </div>
 
+      <div id="message" class="col s12">
 
+          <p><b>All Messages:</b></p>
+
+
+        <div id="messages_wrapper">
+          <h5><%= @project.messages.count %> messages</h3>
+          <%= render @project.messages %>
+        </div>
+
+
+
+    </div>
 
 
 </div>
@@ -59,4 +64,15 @@
 
     <%= link_to 'Back to Project list', projects_path %>
    </p>
+</div>
+
+<div id="newmessage" class="modal">
+  <div class="modal-content">
+
+          <%= render "messages/form" %>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+
 </div>

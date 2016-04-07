@@ -12,13 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.select :user_id, User.all.collect { |p| [ p.email, p.id ] } %>
+    <%= f.select :user_id, User.all { |p| [ p.email, p.id ] } %>
+    <%= f.collection_select :user_id, User.all, :id, :email, { prompt: "Select Member" }, class: "browser-default" %>
+
   </div>
   <div class="field">
-    <%= f.select :project_id, Project.all.collect { |p| [ p.title, p.id ] } %>
+    <%= f.collection_select :project_id, Project.all, :id, :project_with_id, { prompt: "Choose a Project" }, class: "browser-default" %>
   </div>
-
+<br>
   <div class="actions">
-    <%= f.submit "Add member to project" %>
+    <%= f.submit "Add member to project", class: "btn"%>
   </div>
 <% end %>

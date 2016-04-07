@@ -1,0 +1,11 @@
+<div class = "message clearfix" >
+  <div class = "message_content">
+    <p class= "message_name"><strong>User Name: <%=message.name %></strong></p>
+    <p class = "message_body">Message: <%= message.body.html_safe %> </p>
+    <p class ="message_time"> <%= time_ago_in_words(message.created_at) %> Ago </p>
+  </div>
+</div>
+
+<p>
+<%= link_to 'Delete', [message.project, message], method: :delete, class: "button", data: { confrim: 'Are you sure?'} %>
+</p>
