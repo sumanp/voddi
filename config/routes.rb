@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :activities
   get 'pages/disclaimer'
 
   resources :projects do
     resources :messages
+
   end
 
   devise_for :users, :controllers => { registrations: 'registrations' }
