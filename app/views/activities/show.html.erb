@@ -1,16 +1,109 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+	<p class="right-align"> <%= link_to 'Back to Project', @activity.project, class: "waves-effect waves-teal btn" %> </p>
+	<div class="col s12 z-depth-1 card-panel" >
+		<br>
+		<span class="text-darken-1">
+			<h5 class="center-align card-content ">
+          V<%= @activity.project.id %> : <%= @activity.project.title %>
+      </h5>
 
-<p>
-  <strong>Title:</strong>
-  <%= @activity.title %>
-</p>
+      <br>
 
-<p>
-  <strong>Done:</strong>
-  <%= @activity.done %>
-</p>
+			 <h5>
+			 <%= check_box_tag "activity_done_#{@activity.id}","", @activity.done, class: "activity_done filled-in", data: { id: @activity.id} %>
+			 <%= label_tag "activity_done_#{@activity.id}", "" %>
 
-<p>
-  <strong>Project:</strong>
-  <%= @activity.project %>
-</p>
+			A<%= @activity.id %> : <%= @activity.title %>
+			</h5>
+
+
+
+			<p>
+			  <strong>Project:</strong>
+
+			  <%= link_to @activity.project.title, @activity.project %>
+			</p>
+
+			<p>
+				<strong>Final Submission:</strong></p>
+
+        <% if @activity.submissions.count != 0 %>
+				<% submission = @activity.submissions.last %>
+				<ul class="collection with-header">
+					<li class="collection-header green accent-1">
+
+						<p><%= submission.body %></p>
+						<i class="tiny material-icons">ic_attach_file</i>
+
+					</li>
+					<li class="collection-item light-green accent-1 ">
+						By <%= submission.name %> |
+						<%= submission.created_at.strftime("%d %b, %y at %H:%M") %>
+						<% if current_user.name == submission.name %>
+						<%= link_to 'Delete',[@activity, submission], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+						<% end %>
+					</li>
+				</ul>
+			<% else %>
+			<% end %>
+
+		</span>
+	</div>
+
+  <% if @activity.submissions.count != 0 %>
+  <div class="col s12 z-depth-1 card-panel"><br>
+    <p><strong>Submission History:</strong></p>
+
+    <% @activity.submissions.reverse_each do |submission|%>
+    <ul class="collection with-header">
+      <li class="collection-header green accent-1">
+
+        <p><%= submission.body %></p>
+        <i class="tiny material-icons">ic_attach_file</i>
+
+      </li>
+      <li class="collection-item light-green accent-1">
+
+        By <%= submission.name %> |
+        <%= submission.created_at.strftime("%d %b, %y at %H:%M") %>
+        <% if current_user.name == submission.name %>
+        <%= link_to 'Delete',[@activity, submission], class: "secondary-content", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </li>
+    </ul>
+    <% end %>
+
+  </div>
+  <% end %>
+
+  <!-- Modal Trigger -->
+	  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+	    <a class="waves-effect waves-light btn-floating btn-large modal-trigger orange accent-4" href="#modal1">
+	      REPORT
+	    </a>
+	  </div>
+
+	  <!-- Modal Structure -->
+	  <div id="modal1" class="modal">
+	    <div class="modal-content">
+	      <h5>Submit Report</h5>
+				<%= form_for([ @activity, @activity.submissions.build]) do |f| %>
+
+				<div class="input-field col s12">
+	        <i class="material-icons prefix">chat_bubble_outline</i>
+	        <%= f.label :Type_Your_Comment %><br>
+					<%= f.text_field :body, class: "materialize-textarea" %>
+					<%= f.file_field :attachments, multiple: true %>
+	      </div>
+
+				<p>
+					<%=  f.submit ("Submit Report"), class: "btn"%>
+				</p><br>
+
+				<% end %>
+	    </div>
+	    <div class="modal-footer">
+	      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+	    </div>
+	  </div>
+</div>

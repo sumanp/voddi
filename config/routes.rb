@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :activities
+  resources :activities do
+    resources :submissions, only: [:create, :destroy]
+  end
   get 'pages/disclaimer'
 
   resources :projects do

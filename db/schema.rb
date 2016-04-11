@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411072446) do
+ActiveRecord::Schema.define(version: 20160411083815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 20160411072446) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.text     "body",        null: false
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "submissions", ["activity_id"], name: "index_submissions_on_activity_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -77,4 +87,5 @@ ActiveRecord::Schema.define(version: 20160411072446) do
 
   add_foreign_key "activities", "projects"
   add_foreign_key "messages", "projects"
+  add_foreign_key "submissions", "activities"
 end
