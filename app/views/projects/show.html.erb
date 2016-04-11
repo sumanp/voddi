@@ -31,7 +31,10 @@
         </p>
 
         <p class= "col s6">
-          Created by: <%= @project.users.name %>
+          Project Members:
+          <% @project.users.each do |users| %>
+            <%= users.name %>,
+          <% end %>
         </p>
         <p class= "col s6 right-align">
 
@@ -43,8 +46,9 @@
     <div id="message" class="col s12">
       <p><b>All Messages:</b></p>
       <div id="messages_wrapper">
-        <h5><%= @project.messages.count %> messages</h3>
-        <%= render @project.messages %>
+        <h5><%= @project.messages.count %> messages</h5>
+
+        <%= render @project.messages.order('id DESC')  %>
       </div>
     </div>
 
@@ -90,6 +94,7 @@
             </tbody>
         </table>
         <% end %>
+        <br>
     </div>
 
 

@@ -27,8 +27,12 @@
 
             <td>V<%= project.id %></td>
             <td><%= link_to "#{project.title}", project %></td>
-
-              <td><%= project.user_ids %></td>
+            <td><p>
+              <% project.users.each do |user| %>
+                <%= user.name %>,
+              <% end %>
+            </p>
+            </td>
               <td>
               <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>

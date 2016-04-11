@@ -1,11 +1,14 @@
-<div class = "message clearfix" >
-  <div class = "message_content">
-    <p class= "message_name"><strong>User Name: <%=message.name %></strong></p>
-    <p class = "message_body">Message: <%= message.body.html_safe %> </p>
-    <p class ="message_time"> <%= time_ago_in_words(message.created_at) %> Ago </p>
-  </div>
-</div>
+<ul class="collection">
+	<li class="collection-item">
+    <p><%= message.body.html_safe%></p>
+		  <i class="tiny material-icons">ic_attach_file</i>
 
-<p>
-<%= link_to 'Delete', [message.project, message], method: :delete, class: "button", data: { confrim: 'Are you sure?'} %>
-</p>
+		 	By: <%= message.name %>  <i class="tiny material-icons tiny">schedule</i> <%= message.created_at.strftime("%d %b, %y at %H:%M") %>
+
+		  <%= link_to "Delete", project_message_path(@project, message.id), class: "secondary-content", method: :delete, data: { confirm: "Are you sure?"} %>
+
+
+
+	</li>
+
+</ul>
