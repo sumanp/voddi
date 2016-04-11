@@ -34,7 +34,9 @@
 
 						<p><%= submission.body %></p>
 						<i class="tiny material-icons">ic_attach_file</i>
-
+						<% submission.attachments.each do |attachment| %>
+						    <%= link_to "#{attachment.file.filename}", attachment.url %> |
+						  <% end %>
 					</li>
 					<li class="collection-item light-green accent-1 ">
 						By <%= submission.name %> |
@@ -60,7 +62,9 @@
 
         <p><%= submission.body %></p>
         <i class="tiny material-icons">ic_attach_file</i>
-
+				<% submission.attachments.each do |attachment| %>
+						    <%= link_to "#{attachment.file.filename}", attachment.url %> |
+						  <% end %>
       </li>
       <li class="collection-item light-green accent-1">
 

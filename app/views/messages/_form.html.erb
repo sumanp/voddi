@@ -1,11 +1,13 @@
 <div class="row col s12 grey lighten-4">
     <strong>New Message</strong>
 <%= form_for([@project, @project.messages.build]) do |f| %>
-  
+
   <div class="input-field col s12 ">
      <%= f.text_area :body, placeholder: "Type your message", class: "materialize-textarea tinymce" %>
    </div>
   <br />
+  <%= f.file_field :attachments, multiple: true %>
+			  <br>
   <p>
     <%= f.submit ("Submit message"), class: "btn waves-effect waves-light"%>
     </p>

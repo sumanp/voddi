@@ -29,6 +29,16 @@
           <b>End Date:</b>
           <%= @project.end_date.to_date.strftime("%d %b, %y") %>
         </p>
+        <p>
+          <i class="material-icons tiny">attachment</i> <b>Attachments:</b>
+          <ol>
+          <% @project.attachments.each do |attachment| %>
+
+              <li><%= link_to "#{attachment.file.filename}", attachment.url, target: '_blank' %></li>
+
+          <% end %>
+          </ol>
+        </p> 
 
         <p class= "col s6">
           Project Members:

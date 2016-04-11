@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411083815) do
+ActiveRecord::Schema.define(version: 20160411133815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20160411083815) do
     t.string   "name"
     t.text     "body"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "attachments", default: [],              array: true
   end
 
   add_index "messages", ["project_id"], name: "index_messages_on_project_id", using: :btree
@@ -52,16 +53,18 @@ ActiveRecord::Schema.define(version: 20160411083815) do
     t.text     "description"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "attachments", default: [],              array: true
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.text     "body",        null: false
+    t.string   "name",                     null: false
+    t.text     "body",                     null: false
     t.integer  "activity_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "attachments", default: [],              array: true
   end
 
   add_index "submissions", ["activity_id"], name: "index_submissions_on_activity_id", using: :btree

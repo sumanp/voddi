@@ -2,7 +2,9 @@
 	<li class="collection-item">
     <p><%= message.body.html_safe%></p>
 		  <i class="tiny material-icons">ic_attach_file</i>
-
+			<% message.attachments.each do |attachment| %>
+		    <%= link_to "#{attachment.file.filename}", attachment.url %> |
+		  <% end %>
 		 	By: <%= message.name %>  <i class="tiny material-icons tiny">schedule</i> <%= message.created_at.strftime("%d %b, %y at %H:%M") %>
 
 		  <%= link_to "Delete", project_message_path(@project, message.id), class: "secondary-content", method: :delete, data: { confirm: "Are you sure?"} %>
