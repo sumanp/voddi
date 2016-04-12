@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @activity = Activity.find(params[:activity_id])
 		@submission = @activity.submissions.build(submission_params)

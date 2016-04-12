@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+  before_action :authenticate_user!
   def create
     @project = Project.find(params[:project_id])
     @message = @project.messages.create(params[:message].permit(:name, :body, {attachments: []}))
