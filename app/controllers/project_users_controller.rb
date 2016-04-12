@@ -1,6 +1,7 @@
 class ProjectUsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project_user, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  before_action :set_project_user, only: [:edit, :update, :destroy]
 
   # GET /project_users
   # GET /project_users.json
@@ -8,10 +9,8 @@ class ProjectUsersController < ApplicationController
     @project_users = ProjectUser.all
   end
 
-  # GET /project_users/1
-  # GET /project_users/1.json
-  def show
-  end
+
+
 
   # GET /project_users/new
   def new
