@@ -38,7 +38,7 @@
 
           <% end %>
           </ol>
-        </p> 
+        </p>
 
         <p class= "col s6">
           Project Members:
@@ -69,15 +69,16 @@
             Please wait for a while, as we assess your project. <br>Also, check this space again to know the status of the key activities associated with your project.
             <p>
         <% else %>
+
         <table class="striped">
             <thead>
               <tr>
-                <th data-field="id">ID</th>
-                <th data-field="activity">Activity</th>
-                <th data-field="status">Status</th>
-                <th data-field="sub">Submissions</th>
-                <th data-field="report">Reports</th>
-                <th data-field="reptime">Last Reported at</th>
+                <th data-field="id" class="center-align">ID</th>
+                <th data-field="activity" class="center-align">Activity</th>
+                <th data-field="status" class="center-align">Status</th>
+                <th data-field="sub" class="center-align">Submissions</th>
+                <th data-field="report" class="center-align">Reports</th>
+                <th data-field="reptime" class="center-align">Last Reported at</th>
                 <th data-field="view"></th>
               </tr>
             </thead>
@@ -86,19 +87,19 @@
 
               <% @project.activities.each do |activity| %>
                 <tr>
-                  <td>A<%= activity.id %></td>
-                  <td><%= link_to activity.title, activity %></td>
+                  <td class="center-align">A<%= activity.id %></td>
+                  <td class="center-align"><%= link_to activity.title, activity %></td>
                   <% if activity.done %>
-                    <td><div class="chip green">done</div></td>
+                    <td class="center-align"><div class="chip green">done</div></td>
                   <% else %>
-                    <td><div class="chip amber lighten-3">pending</div></td>
+                    <td class="center-align"><div class="chip amber lighten-3">pending</div></td>
                   <% end %>
-                  <td><%= activity.submissions.count %></td>
-                  <td>
+                  <td class="center-align"><%= activity.submissions.count %></td>
+                  <td class="center-align">
                     12
                   </td>
-                  <td><%= activity.updated_at.strftime("%d %b, %y at %H:%M") %></td>
-                  <td><a href="<%= activity_path(activity.id) %>" ><i class="material-icons">pageview</i></a></td>
+                  <td class="center-align"><%= activity.updated_at.strftime("%d %b, %y at %H:%M") %></td>
+                  <td class="center-align"><a href="<%= activity_path(activity.id) %>" ><i class="material-icons">pageview</i></a></td>
                 </tr>
               <% end %>
             </tbody>

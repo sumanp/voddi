@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    
+
     @projects = Project.all
   end
 
@@ -30,8 +30,10 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.build(project_params)
 
+
     respond_to do |format|
       if @project.save
+        ProjectUser.create(user_id: current_user.id, project_id: @project.id)
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else

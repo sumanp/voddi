@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :activities do
     resources :submissions, only: [:create, :destroy]
   end
-  get 'pages/disclaimer'
 
   resources :projects do
     resources :messages
@@ -14,6 +13,13 @@ Rails.application.routes.draw do
   authenticated :user do
     root 'projects#index', as: :authenticated_root
   end
+
+  get 'pages/disclaimer'
+  get 'pages/contact'
+  get 'pages/about'
+
+
+
 
   resources :project_users
 

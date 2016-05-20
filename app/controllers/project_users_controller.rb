@@ -1,6 +1,5 @@
 class ProjectUsersController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
   before_action :set_project_user, only: [:edit, :update, :destroy]
 
   # GET /project_users
@@ -8,7 +7,6 @@ class ProjectUsersController < ApplicationController
   def index
     @project_users = ProjectUser.all
   end
-
 
 
 
@@ -28,11 +26,11 @@ class ProjectUsersController < ApplicationController
 
     respond_to do |format|
       if @project_user.save
-        format.html { redirect_to @project_user, notice: 'Project user was successfully created.' }
+        format.html { redirect_to @project_users, notice: 'Project user was successfully created.' }
         format.json { render :show, status: :created, location: @project_user }
       else
         format.html { render :new }
-        format.json { render json: @project_user.errors, status: :unprocessable_entity }
+        format.json { render json: @project_users.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +40,11 @@ class ProjectUsersController < ApplicationController
   def update
     respond_to do |format|
       if @project_user.update(project_user_params)
-        format.html { redirect_to @project_user, notice: 'Project user was successfully updated.' }
+        format.html { redirect_to @project_users, notice: 'Project user was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_user }
       else
         format.html { render :edit }
-        format.json { render json: @project_user.errors, status: :unprocessable_entity }
+        format.json { render json: @project_users.errors, status: :unprocessable_entity }
       end
     end
   end

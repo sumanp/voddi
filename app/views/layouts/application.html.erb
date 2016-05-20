@@ -22,12 +22,12 @@
 <body class = "grey lighten-5">
 
 <!--navbar -->
-<nav class="light-blue lighten-1" role="navigation">
+<nav class="grey lighten-4 white z-depth-0" role="navigation">
 
     <div class="nav-wrapper container">
       <a href="/" class="brand-logo"><%= image_tag("logo.png",size: "120x30", alt: "VODD.in")
  %></a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse grey-text"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
 
 
@@ -40,8 +40,7 @@
 
         <% else %>
           <li><a href="/">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
+          <li><%= link_to "About", pages_about_path %></li>
           <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
 
@@ -56,9 +55,8 @@
           <li><%= link_to "Edit Profile", edit_user_registration_path %> </li>
           <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
         <% else %>
-          <li class="active"><a href="/">Project</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
+          <li class="active"><a href="/">Home</a></li>
+          <li><%= link_to "About", pages_about_path %></li>
           <li><%= link_to "Login", new_user_session_path %></li>
         <% end %>
       </ul>
@@ -104,15 +102,25 @@
               <div class="row">
                 <div class="col l6 s12">
                   <h5 class="white-text">Footer Content</h5>
-                  <p class="grey-text text-lighten-4">Vodd is project management suite developed for Vernext co. Enter more text here. The text can be a short discription of the site.</p>
+                  <p class="grey-text text-lighten-4">
+                    VODD is committed to enhancing the diversity of engineering
+
+management by ensuring its engineering strategies align with and
+
+better utilize the increasing diversity of projects.</p>
+<p class="grey-text text-lighten-4">
+
+VODD focuses on developing internal awareness and creating
+
+opportunities for the future of engineering management.
+                  </p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                   <h5 class="white-text">Navigation</h5>
                   <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Home</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">About</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Services</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Contact</a></li>
+                    <li><a class="grey-text text-lighten-3" href="/">Home</a></li>
+                    <li><%= link_to "About", pages_about_path, class: "white-text" %></li>
+                    <li><%= link_to "Contact", pages_contact_path, class: "white-text" %></li>
                   </ul>
                 </div>
               </div>
@@ -121,7 +129,7 @@
             <div class="footer-copyright">
               <div class="container">
                 © 2016 VODD.in | Design Outsourcing
-                <a class="grey-text text-lighten-4 right" href="pages/disclaimer">Disclaimer</a>
+                <%= link_to "Disclaimer", pages_disclaimer_path, class: "white-text right" %>
               </div>
             </div>
   </footer>
