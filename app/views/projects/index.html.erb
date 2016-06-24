@@ -22,9 +22,9 @@
 
       <tbody>
 
-        <% @projects.each do |project| %>
+        <% current_user.projects.each do |project| %>
           <tr>
-            
+
             <td>V<%= project.id %></td>
             <td><%= link_to "#{project.title}", project %></td>
             <td><p>

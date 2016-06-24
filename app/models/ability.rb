@@ -35,10 +35,16 @@ class Ability
         activity.project.users.include?(user)
       end
 
+      can :index, Activity do |activity|
+
+      end
+
       can :create, Project
       can :create, Message
       can :create, Submission
       cannot :manage, ProjectUser
+      cannot :create, Activity
+      cannot :index, Activity
 
     end
   end
