@@ -15,12 +15,25 @@ module Voddi
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
-
+    config.assets.precompile += %w( materialize.min.css )
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    ActionMailer::Base.smtp_settings = {
+  	address: "smtp.mandrillapp.com",
+  	port: 587,
+  	enable_starttls_auto: true,
+  	user_name: "engg.virnext@gmail.com",
+  	password: "xmAaY4cfZMsI4uND_VKOqg",
+  	authentication: "login"
+    }
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.default charset: "utf-8"
+
   end
 end

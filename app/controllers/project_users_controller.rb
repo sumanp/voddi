@@ -26,6 +26,7 @@ class ProjectUsersController < ApplicationController
 
     respond_to do |format|
       if @project_user.save
+
         format.html { redirect_to @project_users, notice: 'Project user was successfully created.' }
         format.json { render :show, status: :created, location: @project_user }
       else

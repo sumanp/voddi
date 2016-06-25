@@ -5,6 +5,8 @@ class MessagesController < ApplicationController
     @message = @project.messages.create(params[:message].permit(:name, :body, {attachments: []}))
     @message.name = current_user.name
     @message.save
+    MessageMailer.message_created(@project).deliver
+
     redirect_to project_path(@project)
   end
 

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    
+
     @projects = Project.all
   end
 
@@ -33,7 +33,14 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        ProjectUser.create(user_id: current_user.id, project_id: @project.id)
+
+        @project_user = ProjectUser.create(user_id: current_user.id, project_id: @project.id)
+        if @project_user.save
+          ProjectUserMailer.project_user_created(@project_user).deliver
+        end
+
+        ProjectMailer.project_created(@project).deliver
+
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -49,6 +56,8 @@ class ProjectsController < ApplicationController
     authorize! :update, @project
     respond_to do |format|
       if @project.update(project_params)
+        ProjectMailer.project_updated(@project).deliver
+
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -64,7 +73,7 @@ class ProjectsController < ApplicationController
     authorize! :destroy, @project
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to projects_url, notice: 'Project was successfully deleted.' }
       format.json { head :no_content }
     end
   end
