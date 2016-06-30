@@ -7,7 +7,11 @@ class SubmissionsController < ApplicationController
 
 
 		if @submission.save
-      SubmissionMailer.submission_created(@submission).deliver
+      project = @activity.project
+      @recipients = project.users
+      @recipients.each do |recipient|
+        SubmissionMailer.submission_created(recipient).deliver
+      end
 			redirect_to @activity, notice: "Report submitted."
 		else
 			redirect_to @activity, notice: "Report no submitted."
