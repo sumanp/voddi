@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
     @message.save
     @recipients = @project.users
     @recipients.each do |recipient|
-      MessageMailer.message_created(recipient).deliver
+      MessageMailer.message_created(recipient, @project).deliver
     end
     redirect_to project_path(@project)
   end
