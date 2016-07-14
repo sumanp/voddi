@@ -5,7 +5,8 @@ class ProjectMailer < ActionMailer::Base
 		@project = project
 		mail(to: "vodd.engg@gmail.com",
 			subject: "Project Created",
-			body: "A new project: #{@project.title} has been submitted"
+			body: "New project: '#{@project.title}', is generated for your consideration.
+			Kindly review and revert back. "
 		)
 	end
 

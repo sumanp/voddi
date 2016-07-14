@@ -7,7 +7,8 @@ class MessageMailer < ActionMailer::Base
     mail(
       to: recipient.email,
       subject: "There is a new Message in your project",
-			body: "Your project: '#{@project.title }' has received a new Message. "
+			body: "New message for '#{@project.title }', has been uploaded for your kind attention.
+ "
     )
 
 	end

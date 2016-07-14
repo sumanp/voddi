@@ -35,9 +35,9 @@ class ProjectsController < ApplicationController
       if @project.save
 
         @project_user = ProjectUser.create(user_id: current_user.id, project_id: @project.id)
-        if @project_user.save
-          ProjectUserMailer.project_user_created(@project_user).deliver
-        end
+
+        ProjectUserMailer.project_user_created(@project_user).deliver
+
 
         ProjectMailer.project_created(@project).deliver
 
